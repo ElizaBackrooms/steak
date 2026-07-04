@@ -3,8 +3,8 @@ import Footer from "@/components/Footer";
 import MintClient from "./MintClient";
 
 export const metadata = {
-  title: "Mint Wagyu Cut — $STEAK",
-  description: "Hold 100,000 STEAK to mint 1 of 200 Wagyu Cut NFTs.",
+  title: "Mint Steak Cut — $STEAK",
+  description: "Hold 100,000 STEAK to mint 1 of 200 Steak Cut NFTs — ribeye, sirloin, brisket, and more.",
 };
 
 export default function MintPage() {

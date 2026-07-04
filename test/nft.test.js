@@ -5,6 +5,8 @@ import {
   NFT,
   checkEligibility,
   remainingSupply,
+  formatCutName,
+  getCutForSerial,
 } from "../web/src/lib/nft.ts";
 
 const emptyRegistry = { mints: [], next_serial: 1 };
@@ -60,4 +62,12 @@ test("NFT constants match product spec", () => {
   assert.equal(NFT.minSteakBalance, 100_000);
   assert.equal(NFT.maxSupply, 200);
   assert.equal(NFT.maxPerWallet, 1);
+  assert.equal(NFT.name, "Steak Cut");
+});
+
+test("formatCutName cycles through cut types", () => {
+  assert.equal(formatCutName(1), "Ribeye Cut #1");
+  assert.equal(formatCutName(2), "Sirloin Cut #2");
+  assert.equal(formatCutName(9), "Ribeye Cut #9");
+  assert.equal(getCutForSerial(3), "Brisket");
 });

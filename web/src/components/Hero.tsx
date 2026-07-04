@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LINKS, TOKEN } from "@/lib/constants";
+import RanchHud from "@/components/RanchHud";
 
 export default function Hero() {
   return (
@@ -9,7 +10,7 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-steak-amber">
-          Solana · pump.fun · Tonight
+          The Ranch · Solana · Tonight
         </p>
         <h1 className="font-display text-5xl font-black leading-none tracking-tight text-steak-cream sm:text-7xl">
           ${TOKEN.ticker}
@@ -18,9 +19,11 @@ export default function Hero() {
           {TOKEN.tagline}
         </p>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-steak-cream/70">
-          You bottle-fed her. You raised her. You ate her. Now you raise your bags
-          on-chain — same rules, same commitment, same harvest.
+          You bottle-fed her. You raised her. You ate her. Now you raise your bags on-chain — same rules, same
+          harvest.
         </p>
+
+        <RanchHud />
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
@@ -35,26 +38,22 @@ export default function Hero() {
             href="/mint"
             className="w-full rounded-full border border-steak-amber/40 bg-steak-amber/10 px-8 py-4 text-lg font-bold text-steak-amber transition hover:bg-steak-amber/20 sm:w-auto"
           >
-            Mint Wagyu (100k)
+            Cut Room
           </Link>
           <Link
             href="/dashboard"
             className="w-full rounded-full border border-steak-cream/20 px-8 py-4 text-lg font-bold text-steak-cream transition hover:border-steak-cream/40 hover:bg-steak-cream/5 sm:w-auto"
           >
-            Dashboard
+            The Pasture
           </Link>
         </div>
-
-        <p className="mt-6 text-sm text-steak-cream/50">
-          100,000 STEAK = 1 Wagyu Cut NFT · 200 only · tradeable
-        </p>
 
         <p className="mt-8 text-sm text-steak-cream/50">
           Founded by{" "}
           <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="text-steak-amber hover:underline">
             {TOKEN.founder}
           </a>
-          {" "}· 1B supply · No mint authority
+          {" "}· 1B supply · Proof of Steak
         </p>
       </div>
     </section>

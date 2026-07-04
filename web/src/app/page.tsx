@@ -1,8 +1,13 @@
 import SiteNav from "@/components/SiteNav";
 import Hero from "@/components/Hero";
-import Story from "@/components/Story";
+import LorePanels from "@/components/LorePanels";
+import WalletStats from "@/components/WalletStats";
+import Steakometer from "@/components/Steakometer";
+import HerdBoard from "@/components/HerdBoard";
+import CutRoomTeaser from "@/components/CutRoomTeaser";
 import Tokenomics from "@/components/Tokenomics";
-import Roadmap from "@/components/Roadmap";
+import Quests from "@/components/Quests";
+import Receipts from "@/components/Receipts";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -11,9 +16,14 @@ export default function Home() {
       <SiteNav />
       <main>
         <Hero />
-        <Story />
+        <LorePanels />
+        <WalletStats />
+        <Steakometer />
+        <CutRoomTeaser />
+        <HerdBoard />
         <Tokenomics />
-        <Roadmap />
+        <Quests />
+        <Receipts />
       </main>
       <Footer />
     </>

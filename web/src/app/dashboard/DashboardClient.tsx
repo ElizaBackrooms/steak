@@ -57,8 +57,8 @@ export default function DashboardClient() {
     <div className="mx-auto max-w-5xl px-4 py-8">
       <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h1 className="font-display text-3xl font-bold text-steak-cream">The Pasture</h1>
-          <p className="mt-1 text-steak-cream/60">Connect your wallet to see your Rancher status.</p>
+            <h1 className="font-display text-3xl font-bold text-steak-cream">The Pasture</h1>
+            <p className="mt-1 text-steak-cream/60">Marination points, grazing tier, and herd rank.</p>
         </div>
         <WalletMultiButton className="!bg-steak-red !font-semibold hover:!bg-steak-red/90" />
       </div>

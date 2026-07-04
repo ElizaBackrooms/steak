@@ -3,8 +3,8 @@ import Footer from "@/components/Footer";
 import DashboardClient from "./DashboardClient";
 
 export const metadata = {
-  title: "Dashboard — $STEAK",
-  description: "Rancher dashboard — balance, tier, and harvest points.",
+  title: "The Pasture — $STEAK",
+  description: "Marination points, grazing tiers, and the herd leaderboard.",
 };
 
 export default function DashboardPage() {

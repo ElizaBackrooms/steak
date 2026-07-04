@@ -7,6 +7,10 @@
   --foreground: #faf5f0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -22,7 +26,6 @@ body {
   }
 }
 
-/* Wallet adapter button overrides */
 .wallet-adapter-button {
   font-family: var(--font-sans), system-ui, sans-serif !important;
 }

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
-import { NFT } from "@/lib/nft";
+import { NFT, STEAK_CUTS } from "@/lib/nft";
 
 type MintStatus = {
   remaining: number;
@@ -21,7 +21,7 @@ export default function MintClient() {
   const [status, setStatus] = useState<MintStatus | null>(null);
   const [loading, setLoading] = useState(false);
   const [minting, setMinting] = useState(false);
-  const [result, setResult] = useState<{ serial: number; nft_mint: string | null; message: string } | null>(null);
+  const [result, setResult] = useState<{ serial: number; name: string; nft_mint: string | null; message: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const wallet = publicKey?.toBase58();
@@ -65,6 +65,7 @@ export default function MintClient() {
       const data = (await res.json()) as {
         error?: string;
         serial?: number;
+        name?: string;
         nft_mint?: string | null;
         message?: string;
       };
@@ -74,6 +75,7 @@ export default function MintClient() {
       }
       setResult({
         serial: data.serial!,
+        name: data.name ?? `Steak Cut #${data.serial}`,
         nft_mint: data.nft_mint ?? null,
         message: data.message ?? "Minted!",
       });
@@ -91,9 +93,12 @@ export default function MintClient() {
         <p className="text-6xl" aria-hidden>
           🥩
         </p>
-        <h1 className="mt-4 font-display text-4xl font-bold text-steak-cream">Wagyu Cut</h1>
+        <h1 className="mt-4 font-display text-4xl font-bold text-steak-cream">The Cut Room</h1>
         <p className="mt-2 text-steak-cream/60">
-          {NFT.minSteakBalance.toLocaleString()} STEAK = 1 NFT · {NFT.maxSupply} total · 1 per wallet
+          {NFT.minSteakBalance.toLocaleString()} STEAK = 1 Steak Cut NFT · {NFT.maxSupply} total · 1 per wallet
+        </p>
+        <p className="mt-3 text-xs text-steak-cream/40">
+          Cuts: {STEAK_CUTS.join(" · ")}
         </p>
       </div>
 
@@ -124,7 +129,7 @@ export default function MintClient() {
 
             {status?.already_minted && (
               <div className="rounded-xl bg-steak-800/50 p-4 text-center">
-                <p className="font-semibold text-steak-amber">You already hold Wagyu Cut #{status.already_minted.serial}</p>
+                <p className="font-semibold text-steak-amber">You already hold a Steak Cut (#{status.already_minted.serial})</p>
                 {status.already_minted.nft_mint && (
                   <p className="mt-1 break-all font-mono text-xs text-steak-cream/50">
                     {status.already_minted.nft_mint}
@@ -140,7 +145,7 @@ export default function MintClient() {
                 disabled={minting || (status?.remaining ?? 0) === 0}
                 className="w-full rounded-full bg-steak-red py-3 font-semibold text-white transition hover:bg-steak-red/90 disabled:opacity-50"
               >
-                {minting ? "Minting…" : "Mint Wagyu Cut"}
+                {minting ? "Minting…" : "Mint Your Cut"}
               </button>
             )}
 
@@ -152,7 +157,7 @@ export default function MintClient() {
 
             {result && (
               <div className="rounded-xl border border-steak-amber/30 bg-steak-800/30 p-4 text-center">
-                <p className="font-display text-xl font-bold text-steak-amber">Wagyu Cut #{result.serial}</p>
+                <p className="font-display text-xl font-bold text-steak-amber">{result.name}</p>
                 <p className="mt-2 text-sm text-steak-cream/70">{result.message}</p>
                 {result.nft_mint && (
                   <a

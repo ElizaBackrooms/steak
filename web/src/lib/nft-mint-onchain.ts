@@ -1,9 +1,11 @@
 /**
- * Optional on-chain Wagyu NFT mint via Metaplex.
+ * Optional on-chain Steak Cut NFT mint via Metaplex.
  * Requires NFT_MINT_AUTHORITY_SECRET (base58) and NFT_METADATA_URI in env.
  */
 
-export async function mintWagyuOnChain(
+import { formatCutName } from "./nft";
+
+export async function mintSteakCutOnChain(
   recipientWallet: string,
   serial: number,
 ): Promise<{ nft_mint: string; tx: string }> {
@@ -35,7 +37,7 @@ export async function mintWagyuOnChain(
 
   const result = await createNft(umi, {
     mint,
-    name: `Wagyu Cut #${serial}`,
+    name: formatCutName(serial),
     uri: metadataUri,
     sellerFeeBasisPoints: percentAmount(5),
     tokenOwner: publicKey(recipientWallet),

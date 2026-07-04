@@ -1,27 +1,27 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { LINKS, TOKEN } from "@/lib/constants";
 
 const NAV = [
   { href: "/#story", label: "Story" },
-  { href: "/#tokenomics", label: "Tokenomics" },
-  { href: "/mint", label: "Wagyu Mint" },
-  { href: "/dashboard", label: "Dashboard" },
+  { href: "/#cuts", label: "Cut Room" },
+  { href: "/#herd", label: "The Herd" },
+  { href: "/dashboard", label: "Pasture" },
 ];
 
 export default function SiteNav() {
   const pathname = usePathname();
-  const onDashboard = pathname === "/dashboard";
+  const showWallet = pathname === "/dashboard" || pathname === "/mint";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-steak-800/60 bg-steak-950/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold tracking-tight text-steak-cream">
           <span className="text-2xl" aria-hidden>🥩</span>
-          ${TOKEN.ticker}
+          The Ranch
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">
@@ -45,13 +45,15 @@ export default function SiteNav() {
         </div>
 
         <div className="flex items-center gap-3">
-          {onDashboard && <WalletMultiButton className="!bg-steak-red !font-semibold hover:!bg-steak-red/90" />}
-          {!onDashboard && (
+          {showWallet && (
+            <WalletMultiButton className="!bg-steak-red !font-semibold hover:!bg-steak-red/90" />
+          )}
+          {!showWallet && (
             <Link
-              href="/dashboard"
+              href="/mint"
               className="rounded-full bg-steak-red px-4 py-2 text-sm font-semibold text-white transition hover:bg-steak-red/90"
             >
-              Ranch Dashboard
+              Mint Cut
             </Link>
           )}
         </div>

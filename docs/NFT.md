@@ -1,8 +1,10 @@
-# Wagyu Cut NFT
+# Steak Cut NFTs
 
-**100,000 STEAK = 1 Wagyu Cut · 200 supply · 1 per wallet · tradeable**
+**100,000 STEAK = 1 Steak Cut · 200 supply · 1 per wallet · tradeable**
 
-No tiers. No escrow (for now). Hold the NFT in your wallet for future Harvest eligibility.
+Each mint gets a **cut type** (Ribeye, Sirloin, Brisket, Porterhouse, T-Bone, Filet, Flank, Chuck) based on mint order. Not wagyu-only — the whole animal is on the menu.
+
+No tiers. No escrow (for now). Hold your cut in wallet for future Harvest eligibility.
 
 ---
 
@@ -13,70 +15,51 @@ No tiers. No escrow (for now). Hold the NFT in your wallet for future Harvest el
 | Minimum STEAK to mint | **100,000** |
 | Total supply | **200** |
 | Per wallet | **1** |
-| Tradeable | Yes (secondary market anytime) |
-| Escrow stake | Not yet — coming later if demand warrants |
+| Cut types | 8 cuts, assigned by serial (#1 Ribeye, #2 Sirloin, … cycles) |
+| Tradeable | Yes (Magic Eden / Tensor) |
+| Escrow stake | Not yet |
+
+---
+
+## Cut assignment
+
+| Serial | Example name |
+|--------|----------------|
+| 1 | Ribeye Cut #1 |
+| 2 | Sirloin Cut #2 |
+| 8 | Chuck Cut #8 |
+| 9 | Ribeye Cut #9 |
+
+Same gate for every cut — 100k STEAK. Rarity is which number and which cut you pull.
 
 ---
 
 ## How to mint
 
-1. Buy **≥100,000 STEAK** on pump.fun after launch.
-2. Go to **`/mint`** on the site and connect Phantom or Solflare.
-3. Click **Mint Wagyu Cut** if eligible.
-4. NFT appears in your wallet (when on-chain mint is configured).
+1. Buy **≥100,000 STEAK** on pump.fun.
+2. Go to **`/mint`** (The Cut Room) and connect wallet.
+3. Click **Mint Your Cut** if eligible.
 
 ---
 
-## Founder setup (before mint goes live)
+## Founder setup
 
-### 1. Upload metadata
-
-Pin one wagyu steak image to IPFS (NFT.Storage, Irys, or Pinata):
+Upload a steak cut image to IPFS. One image works for all 200 (name differs on-chain). Or use separate art per cut type later.
 
 ```json
 {
-  "name": "Wagyu Cut",
-  "symbol": "WAGYU",
+  "name": "Steak Cut",
+  "symbol": "CUT",
   "description": "Bottle-fed to blockchain. 100k STEAK gate. 1 of 200.",
-  "image": "ipfs://YOUR_CID/wagyu.png"
+  "image": "ipfs://YOUR_CID/steak-cut.png"
 }
 ```
 
-Set in `web/.env.local`:
-
 ```env
 NFT_METADATA_URI=ipfs://YOUR_CID/metadata.json
-NFT_MINT_AUTHORITY_SECRET=base58_of_collection_authority_keypair
+NFT_MINT_AUTHORITY_SECRET=base58_secret
 ```
 
-**Never commit the secret.** Use Vercel env vars in production.
-
-### 2. Fund the mint authority wallet
-
-~0.05 SOL per NFT × 200 ≈ **10 SOL** buffer for rent + fees (plus extra for safety).
-
-### 3. Without on-chain config (soft launch)
-
-If `NFT_MINT_AUTHORITY_SECRET` is not set, the API **registers** eligible wallets in `data/mints.json` and shows a reservation message. You can airdrop NFTs manually later — not ideal, but unblocks launch night.
-
 ---
 
-## API
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/mint/status?wallet=` | Supply, eligibility, balance |
-| POST | `/api/mint` | Body: `{ "wallet": "..." }` — mint if eligible |
-
----
-
-## Harvest (future)
-
-When Harvest snapshots run:
-
-- Holding **Wagyu Cut NFT** in wallet at snapshot = bonus weight (rules TBD in `AIRDROP_RULES.md` update).
-- Escrow staking may add a multiplier later — not required for launch.
-
----
-
-*Not financial or legal advice. NFTs have no guaranteed value.*
+*Not financial or legal advice.*

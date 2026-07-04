@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 import { registerMint, readMintRegistry } from "@/lib/mint-registry";
 import { checkEligibility } from "@/lib/nft";
 import { getSteakBalance } from "@/lib/steak-balance";
-import { isOnChainMintConfigured, mintWagyuOnChain } from "@/lib/nft-mint-onchain";
+import { isOnChainMintConfigured, mintSteakCutOnChain } from "@/lib/nft-mint-onchain";
+import { formatCutName } from "@/lib/nft";
 
 export async function POST(req: Request) {
   let body: { wallet?: string };
@@ -31,7 +32,7 @@ export async function POST(req: Request) {
   let onchain: { nft_mint: string; tx: string } | undefined;
   if (isOnChainMintConfigured()) {
     try {
-      onchain = await mintWagyuOnChain(wallet, serial);
+      onchain = await mintSteakCutOnChain(wallet, serial);
     } catch (err) {
       const message = err instanceof Error ? err.message : "On-chain mint failed";
       return NextResponse.json({ error: message }, { status: 502 });
@@ -43,13 +44,14 @@ export async function POST(req: Request) {
     return NextResponse.json({
       ok: true,
       serial: record.serial,
-      name: `Wagyu Cut #${record.serial}`,
+      name: formatCutName(record.serial),
+      cut: record.cut,
       nft_mint: record.nft_mint ?? null,
       tx: record.tx ?? null,
       on_chain: Boolean(onchain),
       message: onchain
-        ? "Wagyu Cut minted to your wallet. Trade it freely — hold for future Harvests."
-        : "Wagyu Cut reserved. On-chain mint will be sent when collection authority is live.",
+        ? "Steak Cut minted to your wallet. Trade it freely — hold for future Harvests."
+        : "Steak Cut reserved. On-chain mint will be sent when collection authority is live.",
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Registry error";
