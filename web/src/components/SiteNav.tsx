@@ -8,7 +8,7 @@ import { LINKS, TOKEN } from "@/lib/constants";
 const NAV = [
   { href: "/#story", label: "Story" },
   { href: "/#tokenomics", label: "Tokenomics" },
-  { href: "/#roadmap", label: "Roadmap" },
+  { href: "/mint", label: "Wagyu Mint" },
   { href: "/dashboard", label: "Dashboard" },
 ];
 
