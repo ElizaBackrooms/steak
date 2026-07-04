@@ -4,6 +4,7 @@ import LorePanels from "@/components/LorePanels";
 import WalletStats from "@/components/WalletStats";
 import Steakometer from "@/components/Steakometer";
 import HerdBoard from "@/components/HerdBoard";
+import CutLevelsGallery from "@/components/CutLevelsGallery";
 import CutRoomTeaser from "@/components/CutRoomTeaser";
 import Tokenomics from "@/components/Tokenomics";
 import Quests from "@/components/Quests";
@@ -19,6 +20,7 @@ export default function Home() {
         <LorePanels />
         <WalletStats />
         <Steakometer />
+        <CutLevelsGallery />
         <CutRoomTeaser />
         <HerdBoard />
         <Tokenomics />

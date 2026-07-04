@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-import { type MintRecord, type MintRegistry, NFT, getCutForSerial } from "./nft";
+import { type MintRecord, type MintRegistry, NFT, getCutForSerial, getCutLevel } from "./nft";
 
 const EMPTY: MintRegistry = { mints: [], next_serial: 1 };
 
@@ -49,9 +49,11 @@ export async function registerMint(
   }
 
   const serial = registry.next_serial;
+  const level = getCutLevel(serial);
   const record: MintRecord = {
     wallet,
     serial,
+    level: level.level,
     cut: getCutForSerial(serial),
     steak_balance: steakBalance,
     minted_at: Date.now(),

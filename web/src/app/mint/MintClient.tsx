@@ -4,7 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
-import { NFT, STEAK_CUTS } from "@/lib/nft";
+import Image from "next/image";
+
+import { NFT, CUT_LEVELS, getCutImage } from "@/lib/nft";
 
 type MintStatus = {
   remaining: number;
@@ -12,7 +14,8 @@ type MintStatus = {
   steak_balance: number;
   eligible: boolean;
   reason: string | null;
-  already_minted: { serial: number; nft_mint: string | null } | null;
+  already_minted: { serial: number; name: string; nft_mint: string | null } | null;
+  next_cut: string | null;
   on_chain_configured: boolean;
 };
 
@@ -40,6 +43,7 @@ export default function MintClient() {
         eligible: data.eligible ?? false,
         reason: data.reason,
         already_minted: data.already_minted,
+        next_cut: data.next_cut ?? null,
         on_chain_configured: data.on_chain_configured,
       });
     } finally {
@@ -98,8 +102,22 @@ export default function MintClient() {
           {NFT.minSteakBalance.toLocaleString()} STEAK = 1 Steak Cut NFT · {NFT.maxSupply} total · 1 per wallet
         </p>
         <p className="mt-3 text-xs text-steak-cream/40">
-          Cuts: {STEAK_CUTS.join(" · ")}
+          {CUT_LEVELS.map((c) => `LVL ${c.level} ${c.name}`).join(" · ")}
         </p>
+        {status?.next_cut && !status.already_minted && (
+          <div className="mx-auto mt-6 max-w-xs overflow-hidden rounded-2xl border border-steak-800">
+            <div className="relative aspect-square">
+              <Image
+                src={getCutImage((status.minted ?? 0) + 1)}
+                alt={status.next_cut}
+                fill
+                className="object-cover"
+                sizes="320px"
+              />
+            </div>
+            <p className="bg-steak-900/80 px-3 py-2 text-xs font-semibold text-steak-amber">Next up: {status.next_cut}</p>
+          </div>
+        )}
       </div>
 
       <div className="mt-8 rounded-2xl border border-steak-800 bg-steak-900/50 p-6">
@@ -129,7 +147,16 @@ export default function MintClient() {
 
             {status?.already_minted && (
               <div className="rounded-xl bg-steak-800/50 p-4 text-center">
-                <p className="font-semibold text-steak-amber">You already hold a Steak Cut (#{status.already_minted.serial})</p>
+                <div className="relative mx-auto mb-3 aspect-square max-w-[200px] overflow-hidden rounded-xl">
+                  <Image
+                    src={getCutImage(status.already_minted.serial)}
+                    alt={status.already_minted.name}
+                    fill
+                    className="object-cover"
+                    sizes="200px"
+                  />
+                </div>
+                <p className="font-semibold text-steak-amber">{status.already_minted.name}</p>
                 {status.already_minted.nft_mint && (
                   <p className="mt-1 break-all font-mono text-xs text-steak-cream/50">
                     {status.already_minted.nft_mint}
@@ -157,6 +184,15 @@ export default function MintClient() {
 
             {result && (
               <div className="rounded-xl border border-steak-amber/30 bg-steak-800/30 p-4 text-center">
+                <div className="relative mx-auto mb-3 aspect-square max-w-[220px] overflow-hidden rounded-xl border border-steak-amber/20">
+                  <Image
+                    src={getCutImage(result.serial)}
+                    alt={result.name}
+                    fill
+                    className="object-cover"
+                    sizes="220px"
+                  />
+                </div>
                 <p className="font-display text-xl font-bold text-steak-amber">{result.name}</p>
                 <p className="mt-2 text-sm text-steak-cream/70">{result.message}</p>
                 {result.nft_mint && (

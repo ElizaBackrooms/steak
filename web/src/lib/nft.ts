@@ -1,17 +1,48 @@
-/** Steak Cut NFTs — single tier, 100k STEAK gate, 200 supply */
+/** Steak Cut NFTs — 5 levels, 100k STEAK gate, 200 supply */
 
-export const STEAK_CUTS = [
-  "Ribeye",
-  "Sirloin",
-  "Brisket",
-  "Porterhouse",
-  "T-Bone",
-  "Filet",
-  "Flank",
-  "Chuck",
+export const CUT_LEVELS = [
+  {
+    level: 1,
+    name: "Sirloin",
+    label: "Sirloin Cut",
+    image: "/cuts/cut-level-1-sirloin.png",
+    vibe: "Entry cut — clean, classic, gets you on the board.",
+  },
+  {
+    level: 2,
+    name: "Ribeye",
+    label: "Ribeye Cut",
+    image: "/cuts/cut-level-2-ribeye.png",
+    vibe: "Marbled and loud — the herd knows you showed up.",
+  },
+  {
+    level: 3,
+    name: "Brisket",
+    label: "Brisket Cut",
+    image: "/cuts/cut-level-3-brisket.png",
+    vibe: "Low and slow energy — smoked, patient, dangerous.",
+  },
+  {
+    level: 4,
+    name: "Porterhouse",
+    label: "Porterhouse Cut",
+    image: "/cuts/cut-level-4-porterhouse.png",
+    vibe: "Big bone energy — steakhouse table, no apologies.",
+  },
+  {
+    level: 5,
+    name: "Prime",
+    label: "Prime Cut",
+    image: "/cuts/cut-level-5-prime.png",
+    vibe: "Dry-aged top tier — the cut they screenshot.",
+  },
 ] as const;
 
-export type SteakCutName = (typeof STEAK_CUTS)[number];
+export type CutLevel = (typeof CUT_LEVELS)[number];
+export type SteakCutName = CutLevel["name"];
+
+/** @deprecated use CUT_LEVELS */
+export const STEAK_CUTS = CUT_LEVELS.map((c) => c.name);
 
 export const NFT = {
   name: "Steak Cut",
@@ -19,20 +50,31 @@ export const NFT = {
   minSteakBalance: 100_000,
   maxSupply: 200,
   maxPerWallet: 1,
+  levelCount: CUT_LEVELS.length,
 } as const;
 
-/** Serial 1–200 maps to a cut type (cycles through STEAK_CUTS). */
+export function getCutLevel(serial: number): CutLevel {
+  const idx = (serial - 1) % CUT_LEVELS.length;
+  return CUT_LEVELS[idx];
+}
+
 export function getCutForSerial(serial: number): SteakCutName {
-  return STEAK_CUTS[(serial - 1) % STEAK_CUTS.length];
+  return getCutLevel(serial).name;
 }
 
 export function formatCutName(serial: number): string {
-  return `${getCutForSerial(serial)} Cut #${serial}`;
+  const cut = getCutLevel(serial);
+  return `${cut.label} · LVL ${cut.level} #${serial}`;
+}
+
+export function getCutImage(serial: number): string {
+  return getCutLevel(serial).image;
 }
 
 export type MintRecord = {
   wallet: string;
   serial: number;
+  level: number;
   cut: SteakCutName;
   steak_balance: number;
   minted_at: number;

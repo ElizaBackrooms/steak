@@ -15,12 +15,13 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "$STEAK — Bottle-Fed to Blockchain",
+  title: "The Ranch — $STEAK · Bottle-Fed to Blockchain",
   description:
-    "The lore-first meme coin from @lazefrito. Raise your bags on Solana. pump.fun launch tonight.",
+    "Proof of Steak on Solana. Hold STEAK, mint a Steak Cut NFT, climb the Herd. pump.fun launch tonight.",
   openGraph: {
-    title: "$STEAK — Bottle-Fed to Blockchain",
-    description: "You bottle-fed her. You raised her. Now raise your bags on-chain.",
+    title: "The Ranch — $STEAK",
+    description: "You raised it. Now raise your bags. 100k STEAK = 1 Steak Cut NFT.",
+    images: ["/steak-cut-hero.png"],
   },
 };
 

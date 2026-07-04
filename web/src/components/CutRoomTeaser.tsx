@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { NFT, STEAK_CUTS } from "@/lib/nft";
+import { NFT, STEAK_CUTS, getCutImage } from "@/lib/nft";
 
 export default function CutRoomTeaser() {
   const [minted, setMinted] = useState(0);
   const [remaining, setRemaining] = useState(200);
   const [nextCut, setNextCut] = useState<string | null>(null);
+  const [nextSerial, setNextSerial] = useState(1);
 
   useEffect(() => {
     fetch("/api/ranch/stats")
@@ -18,18 +19,20 @@ export default function CutRoomTeaser() {
         setMinted(d.minted);
         setRemaining(d.remaining);
         setNextCut(d.next_cut_name);
+        setNextSerial(d.remaining > 0 ? d.minted + 1 : 1);
       });
   }, []);
 
   const pct = ((minted / NFT.maxSupply) * 100).toFixed(0);
+  const previewImage = getCutImage(nextSerial);
 
   return (
     <section id="cuts" className="px-4 py-24">
       <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
         <div className="relative aspect-square max-h-80 overflow-hidden rounded-2xl border border-steak-800 bg-steak-900">
           <Image
-            src="/steak-cut-hero.png"
-            alt="Steak Cut NFT example"
+            src={previewImage}
+            alt={nextCut ?? "Steak Cut NFT example"}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"

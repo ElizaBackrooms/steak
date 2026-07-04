@@ -7,6 +7,8 @@ import {
   remainingSupply,
   formatCutName,
   getCutForSerial,
+  getCutImage,
+  CUT_LEVELS,
 } from "../web/src/lib/nft.ts";
 
 const emptyRegistry = { mints: [], next_serial: 1 };
@@ -63,11 +65,21 @@ test("NFT constants match product spec", () => {
   assert.equal(NFT.maxSupply, 200);
   assert.equal(NFT.maxPerWallet, 1);
   assert.equal(NFT.name, "Steak Cut");
+  assert.equal(NFT.levelCount, 5);
 });
 
-test("formatCutName cycles through cut types", () => {
-  assert.equal(formatCutName(1), "Ribeye Cut #1");
-  assert.equal(formatCutName(2), "Sirloin Cut #2");
-  assert.equal(formatCutName(9), "Ribeye Cut #9");
+test("formatCutName cycles through 5 cut levels", () => {
+  assert.equal(formatCutName(1), "Sirloin Cut · LVL 1 #1");
+  assert.equal(formatCutName(2), "Ribeye Cut · LVL 2 #2");
+  assert.equal(formatCutName(5), "Prime Cut · LVL 5 #5");
+  assert.equal(formatCutName(6), "Sirloin Cut · LVL 1 #6");
   assert.equal(getCutForSerial(3), "Brisket");
+  assert.equal(NFT.levelCount, 5);
+});
+
+test("getCutImage maps each level to its example art", () => {
+  assert.equal(getCutImage(1), CUT_LEVELS[0].image);
+  assert.equal(getCutImage(5), CUT_LEVELS[4].image);
+  assert.equal(getCutImage(6), CUT_LEVELS[0].image);
+  assert.equal(CUT_LEVELS.length, 5);
 });
