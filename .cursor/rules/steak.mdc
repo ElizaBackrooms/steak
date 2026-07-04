@@ -1,0 +1,12 @@
+---
+description: Core conventions for the steak project
+alwaysApply: true
+---
+
+# steak project rules
+
+- Keep changes minimal and focused on the requested task.
+- Match existing code style and file layout.
+- Run `npm test` before finishing when tests exist.
+- Do not commit secrets, `.env` files, or credentials.
+- Prefer clear names and small, readable functions over clever abstractions.
