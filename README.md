@@ -28,8 +28,73 @@ steak/
 ├── .cursor/
 │   ├── environment.json   # Cloud VM install/update command
 │   └── rules/             # Coding conventions for all agents
+├── .swarm/                # Multi-agent coordination (STATUS, CONTRACTS)
+├── scripts/               # swarm launcher, snapshot worker, cloud agent
 └── src/                   # Application source
 ```
+
+## Launch tonight (STEAK token)
+
+Quick path from laptop or phone to a live swarm + dashboard.
+
+### 1. One-time setup
+
+```powershell
+cd C:\Users\flowp\steak
+git worktree add ..\steak-wt-web cursor/steak-wt-web-17ae
+git worktree add ..\steak-wt-api cursor/steak-wt-api-17ae
+git worktree add ..\steak-wt-docs cursor/steak-wt-docs-17ae
+git worktree add ..\steak-wt-scripts cursor/steak-wt-scripts-17ae
+npm install
+```
+
+Get a [Cursor API key](https://cursor.com/dashboard/integrations) and set secrets in [Cursor Cloud → Secrets](https://cursor.com/dashboard?tab=cloud-agents): `HELIUS_API_KEY`, `SNAPSHOT_SECRET`, `STEAK_MINT`.
+
+### 2. Launch the swarm (4 lane agents)
+
+```powershell
+$env:CURSOR_API_KEY="cursor_..."; npm run swarm
+```
+
+Launch a single lane:
+
+```powershell
+$env:CURSOR_API_KEY="cursor_..."; npm run swarm -- web
+```
+
+Lanes: `web`, `api`, `docs`, `scripts`. Agents read `.swarm/` for coordination and open PRs to `cursor/steak-launch-17ae`.
+
+### 3. Run the dashboard locally
+
+After the web lane lands:
+
+```powershell
+cd web
+cp .env.example .env.local   # fill mint + RPC
+npm install
+npm run dev
+```
+
+From repo root: `npm run dev:web` · production build: `npm run build:web`.
+
+### 4. Daily holder snapshot
+
+Once `POST /api/snapshot` is live:
+
+```powershell
+$env:SNAPSHOT_SECRET="your-secret"; npm run snapshot
+$env:SNAPSHOT_SECRET="your-secret"; npm run snapshot -- --url https://your-dashboard.vercel.app
+```
+
+### 5. Optional: local worker (My Machines)
+
+```powershell
+.\start-worker.ps1
+```
+
+Keep the terminal open; control agents from [cursor.com/agents](https://cursor.com/agents) or Cursor iOS.
+
+See `.swarm/README.md` for lane ownership and merge order.
 
 ## Secrets
 
