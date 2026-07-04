@@ -32,12 +32,22 @@ export default function Hero() {
             Buy on pump.fun
           </a>
           <Link
+            href="/mint"
+            className="w-full rounded-full border border-steak-amber/40 bg-steak-amber/10 px-8 py-4 text-lg font-bold text-steak-amber transition hover:bg-steak-amber/20 sm:w-auto"
+          >
+            Mint Wagyu (100k)
+          </Link>
+          <Link
             href="/dashboard"
             className="w-full rounded-full border border-steak-cream/20 px-8 py-4 text-lg font-bold text-steak-cream transition hover:border-steak-cream/40 hover:bg-steak-cream/5 sm:w-auto"
           >
-            Enter The Pasture
+            Dashboard
           </Link>
         </div>
+
+        <p className="mt-6 text-sm text-steak-cream/50">
+          100,000 STEAK = 1 Wagyu Cut NFT · 200 only · tradeable
+        </p>
 
         <p className="mt-8 text-sm text-steak-cream/50">
           Founded by{" "}
