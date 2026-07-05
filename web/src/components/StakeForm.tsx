@@ -19,12 +19,12 @@ export default function StakeForm() {
   }, [wallet]);
 
   return (
-    <section id="register" className="px-4 py-24">
-      <div className="mx-auto max-w-xl rounded-2xl border border-steak-800/60 bg-steak-950/75 p-8 text-center backdrop-blur-md">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-steak-amber">Register</p>
-        <h2 className="mt-2 font-display text-3xl font-bold text-steak-cream">Wallet + Google form</h2>
-        <p className="mt-3 text-sm text-steak-cream/60">
-          After you lock on Streamflow, connect your wallet and open the form. Your address pre-fills when configured.
+    <section id="register" className="border-t border-steak-800/10 px-4 py-20">
+      <div className="mx-auto max-w-xl rounded-2xl border border-steak-800/10 bg-steak-cream/30 p-8 text-center">
+        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-steak-red">Register</p>
+        <h2 className="mt-2 font-display text-3xl font-bold text-steak-950">Wallet + Google form</h2>
+        <p className="mt-3 text-sm text-steak-800/60">
+          After you lock on Streamflow, connect your wallet and open the form.
         </p>
 
         <div className="mt-8 flex justify-center">
@@ -32,9 +32,9 @@ export default function StakeForm() {
         </div>
 
         {connected && wallet && (
-          <div className="mt-6 rounded-xl border border-steak-800 bg-steak-950/60 p-4">
-            <p className="text-xs uppercase tracking-wider text-steak-cream/40">Connected wallet</p>
-            <p className="mt-1 break-all font-mono text-sm text-steak-cream">{wallet}</p>
+          <div className="mt-6 rounded-xl border border-steak-800/10 bg-white p-4">
+            <p className="text-xs uppercase tracking-wider text-steak-800/40">Connected wallet</p>
+            <p className="mt-1 break-all font-mono text-sm text-steak-950">{wallet}</p>
           </div>
         )}
 
@@ -48,13 +48,13 @@ export default function StakeForm() {
             Open registration form
           </a>
         ) : (
-          <p className="mt-8 rounded-xl border border-dashed border-steak-800 px-4 py-6 text-sm text-steak-cream/50">
-            Set <code className="text-steak-amber">NEXT_PUBLIC_GOOGLE_FORM_URL</code> in env after you create the form.
+          <p className="mt-8 rounded-xl border border-dashed border-steak-800/20 px-4 py-6 text-sm text-steak-800/50">
+            Set <code className="text-steak-red">NEXT_PUBLIC_GOOGLE_FORM_URL</code> after you create the form.
           </p>
         )}
 
         {!connected && (
-          <p className="mt-6 text-xs text-steak-cream/40">Connect wallet first so we can pre-fill your address.</p>
+          <p className="mt-6 text-xs text-steak-800/40">Connect wallet first so we can pre-fill your address.</p>
         )}
       </div>
     </section>

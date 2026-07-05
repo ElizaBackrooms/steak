@@ -33,10 +33,10 @@ export default function RanchHud() {
       {items.map((item) => (
         <div
           key={item.label}
-          className="rounded-xl border border-steak-800/80 bg-steak-900/60 px-4 py-3 text-center backdrop-blur-sm"
+          className="rounded-xl border border-steak-800/10 bg-steak-cream/50 px-4 py-3 text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-wider text-steak-cream/50">{item.label}</p>
-          <p className="mt-1 font-display text-2xl font-bold text-steak-amber">{item.value}</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-steak-800/50">{item.label}</p>
+          <p className="mt-1 font-display text-2xl font-bold text-steak-red">{item.value}</p>
         </div>
       ))}
     </div>

@@ -1,6 +1,5 @@
 import SiteNav from "@/components/SiteNav";
 import Hero from "@/components/Hero";
-import SectionBackdrop from "@/components/SectionBackdrop";
 import LorePanels from "@/components/LorePanels";
 import SteakGallery from "@/components/SteakGallery";
 import StreamflowStake from "@/components/StreamflowStake";
@@ -15,26 +14,16 @@ export default function Home() {
   return (
     <>
       <SiteNav />
-      <main>
-        <Hero />
-        <SectionBackdrop image="/backgrounds/bg-barn.jpg" overlay="warm" id="story">
-          <LorePanels />
-        </SectionBackdrop>
-        <SectionBackdrop image="/backgrounds/bg-bonfire.jpg" overlay="ember" id="stake-wrap">
-          <StreamflowStake />
-        </SectionBackdrop>
-        <SectionBackdrop image="/backgrounds/bg-pasture.jpg" overlay="dark" id="register-wrap">
-          <StakeForm />
-        </SectionBackdrop>
+      <Hero />
+      <main className="bg-white text-steak-950">
+        <LorePanels />
+        <StreamflowStake />
+        <StakeForm />
         <SteakGallery />
-        <SectionBackdrop image="/backgrounds/bg-pasture.jpg" overlay="darker">
-          <WalletStats />
-          <HerdBoard />
-        </SectionBackdrop>
-        <SectionBackdrop image="/backgrounds/bg-barn.jpg" overlay="dark" id="tokenomics-wrap">
-          <Tokenomics />
-          <Receipts />
-        </SectionBackdrop>
+        <WalletStats />
+        <HerdBoard />
+        <Tokenomics />
+        <Receipts />
       </main>
       <Footer />
     </>

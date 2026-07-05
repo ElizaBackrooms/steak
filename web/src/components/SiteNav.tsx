@@ -19,9 +19,9 @@ export default function SiteNav() {
   const showWallet = pathname === "/dashboard";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-steak-800/60 bg-steak-950/80 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-steak-800/10 bg-white/95 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold tracking-tight text-steak-cream">
+        <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold tracking-tight text-steak-950">
           <span className="text-2xl" aria-hidden>🥩</span>
           Groceries Ranch
         </Link>
@@ -31,7 +31,7 @@ export default function SiteNav() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-steak-cream/70 transition hover:text-steak-cream"
+              className="text-sm font-medium text-steak-800/70 transition hover:text-steak-950"
             >
               {item.label}
             </Link>
@@ -40,7 +40,7 @@ export default function SiteNav() {
             href={LINKS.x}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-steak-cream/70 transition hover:text-steak-cream"
+            className="text-sm font-medium text-steak-800/70 transition hover:text-steak-950"
           >
             {TOKEN.founder}
           </a>

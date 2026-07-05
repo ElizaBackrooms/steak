@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Groceries Ranch — $STEAK",
     description: "Her name was Groceries. Lock on Streamflow. Register your wallet. Catch fee airdrops.",
-    images: ["/backgrounds/bg-hero-ranch.jpg"],
+    images: ["/groceries-hero.jpg"],
   },
 };
 
