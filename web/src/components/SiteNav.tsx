@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { LINKS, TOKEN } from "@/lib/constants";
 
 const NAV = [
@@ -10,18 +9,17 @@ const NAV = [
   { href: "/#steaks", label: "Steaks" },
   { href: "/#stake", label: "Stake" },
   { href: "/#register", label: "Register" },
-  { href: "/#herd", label: "Herd" },
-  { href: "/dashboard", label: "Pasture" },
+  { href: "/#pasture", label: "Pasture" },
+  { href: "/pasture", label: "Full board" },
 ];
 
 export default function SiteNav() {
   const pathname = usePathname();
-  const showWallet = pathname === "/dashboard";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-steak-800/10 bg-white/95 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 bg-steak-950/90 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold tracking-tight text-steak-950">
+        <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold tracking-tight text-steak-cream">
           <span className="text-2xl" aria-hidden>🥩</span>
           Groceries Ranch
         </Link>
@@ -31,7 +29,9 @@ export default function SiteNav() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-steak-800/70 transition hover:text-steak-950"
+              className={`text-sm font-medium transition hover:text-steak-cream ${
+                pathname === item.href ? "text-steak-cream" : "text-steak-cream/70"
+              }`}
             >
               {item.label}
             </Link>
@@ -40,26 +40,20 @@ export default function SiteNav() {
             href={LINKS.x}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-steak-800/70 transition hover:text-steak-950"
+            className="text-sm font-medium text-steak-cream/70 transition hover:text-steak-cream"
           >
             {TOKEN.founder}
           </a>
         </div>
 
-        <div className="flex items-center gap-3">
-          {showWallet && (
-            <WalletMultiButton className="!bg-steak-red !font-semibold hover:!bg-steak-red/90" />
-          )}
-          {!showWallet && (
-            <Link
-              href="/#register"
-              className="rounded-full bg-steak-red px-4 py-2 text-sm font-semibold text-white transition hover:bg-steak-red/90"
-            >
-              Register
-            </Link>
-          )}
-        </div>
+        <Link
+          href="/#register"
+          className="rounded-full bg-steak-red px-4 py-2 text-sm font-semibold text-white transition hover:bg-steak-red/90"
+        >
+          Register
+        </Link>
       </nav>
+      <div className="drip-strip absolute inset-x-0 bottom-0 translate-y-full" aria-hidden />
     </header>
   );
 }

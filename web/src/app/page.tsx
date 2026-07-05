@@ -4,8 +4,7 @@ import LorePanels from "@/components/LorePanels";
 import SteakGallery from "@/components/SteakGallery";
 import StreamflowStake from "@/components/StreamflowStake";
 import StakeForm from "@/components/StakeForm";
-import WalletStats from "@/components/WalletStats";
-import HerdBoard from "@/components/HerdBoard";
+import PastureBoard from "@/components/PastureBoard";
 import Tokenomics from "@/components/Tokenomics";
 import Receipts from "@/components/Receipts";
 import Footer from "@/components/Footer";
@@ -15,13 +14,12 @@ export default function Home() {
     <>
       <SiteNav />
       <Hero />
-      <main className="bg-white text-steak-950">
+      <main className="text-steak-cream">
         <LorePanels />
         <StreamflowStake />
         <StakeForm />
         <SteakGallery />
-        <WalletStats />
-        <HerdBoard />
+        <PastureBoard />
         <Tokenomics />
         <Receipts />
       </main>

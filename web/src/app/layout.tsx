@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
-import SolanaWalletProvider from "@/components/WalletProvider";
 import "./globals.css";
 
 const display = Bebas_Neue({
@@ -17,10 +16,10 @@ const sans = Inter({
 export const metadata: Metadata = {
   title: "Groceries Ranch — $STEAK · Bottle-Fed to Blockchain",
   description:
-    "In memory of Groceries. pump.fun on Solana — steak pics, Streamflow 1-year stake, wallet registration, fee airdrops.",
+    "In memory of Groceries. pump.fun on Solana — lock on Streamflow, register via Google form, fee airdrops.",
   openGraph: {
     title: "Groceries Ranch — $STEAK",
-    description: "Her name was Groceries. Lock on Streamflow. Register your wallet. Catch fee airdrops.",
+    description: "Her name was Groceries. Lock on Streamflow. Fill the form. Catch fee airdrops.",
     images: ["/groceries-hero.jpg"],
   },
 };
@@ -32,9 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${display.variable} ${sans.variable} font-sans antialiased`}>
-        <SolanaWalletProvider>{children}</SolanaWalletProvider>
-      </body>
+      <body className={`${display.variable} ${sans.variable} font-sans antialiased`}>{children}</body>
     </html>
   );
 }

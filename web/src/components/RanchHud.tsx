@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 
 type RanchStats = {
-  ranchers: number;
+  lockers: number;
+  total_locked: number;
   butcher_countdown: string;
 };
 
@@ -23,8 +24,11 @@ export default function RanchHud() {
   }, []);
 
   const items = [
-    { label: "Ranchers tracked", value: stats ? String(stats.ranchers) : "—" },
-    { label: "Lock period", value: "1 year" },
+    { label: "Streamflow lockers", value: stats ? String(stats.lockers) : "—" },
+    {
+      label: "STEAK locked",
+      value: stats && stats.total_locked > 0 ? stats.total_locked.toLocaleString() : "—",
+    },
     { label: "Butcher Day", value: stats ? stats.butcher_countdown : "—" },
   ];
 
@@ -33,9 +37,9 @@ export default function RanchHud() {
       {items.map((item) => (
         <div
           key={item.label}
-          className="rounded-xl border border-steak-800/10 bg-steak-cream/50 px-4 py-3 text-center"
+          className="rounded-xl border border-steak-red/20 bg-steak-900/80 px-4 py-3 text-center backdrop-blur-sm"
         >
-          <p className="text-xs font-semibold uppercase tracking-wider text-steak-800/50">{item.label}</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-steak-cream/50">{item.label}</p>
           <p className="mt-1 font-display text-2xl font-bold text-steak-red">{item.value}</p>
         </div>
       ))}

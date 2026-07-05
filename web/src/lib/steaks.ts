@@ -1,4 +1,4 @@
-/** Steak photo gallery — visual site art, not NFTs */
+/** Steak photo gallery */
 
 export const STEAK_GALLERY_COUNT = 20;
 

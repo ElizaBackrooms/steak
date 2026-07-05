@@ -1,13 +1,13 @@
 # Staking & fee airdrops
 
-$STEAK is a **pump.fun coin only** — no NFTs.
+$STEAK is a **pump.fun coin** — lock on Streamflow, register on Google Form, get fee airdrops.
 
 ## Player flow
 
 1. **Buy** on pump.fun
 2. **Lock** your STEAK on [Streamflow](https://streamflow.finance) for **1 year**
-3. **Register** your wallet on the Google Form (linked on the site)
-4. **Receive** trading-fee airdrops proportional to your registered lock
+3. **Fill the Google Form** with your wallet address
+4. **Receive** trading-fee airdrops (registered lockers on the public pasture leaderboard)
 
 ## Founder setup
 
@@ -16,28 +16,27 @@ $STEAK is a **pump.fun coin only** — no NFTs.
 1. Create a token lock contract on Streamflow for your STEAK mint
 2. Set duration to **12 months**
 3. Copy the public lock URL into `NEXT_PUBLIC_STREAMFLOW_STAKE_URL`
+4. Sync the public pasture leaderboard: `npm run sync:streamflow` (after `STEAK_MINT` is set)
 
 ### Google Form
 
-1. Create a form with fields: **Wallet address** (short answer), optional **TX / lock proof**
-2. Get prefill link → extract `entry.XXXXXXXX` for the wallet field
-3. Set env:
-   - `NEXT_PUBLIC_GOOGLE_FORM_URL` — full form view URL
-   - `NEXT_PUBLIC_GOOGLE_FORM_WALLET_ENTRY` — e.g. `entry.1234567890`
+1. Create a form with a **Wallet address** short-answer field
+2. Set `NEXT_PUBLIC_GOOGLE_FORM_URL` to the form view URL
 
-The site pre-fills the wallet when users connect Phantom/Solflare.
+No wallet connect on the site — users type their address in the form manually.
 
 ### Fee airdrops
 
 - Collect pump.fun / LP fees on a treasury wallet
-- Export Google Form responses + verify Streamflow locks on-chain
-- Airdrop SOL or STEAK to registered wallets (manual or scripted — add script later)
+- Cross-reference Google Form responses with the Streamflow lock leaderboard (`data/streamflow-locks.json`)
+- Airdrop proportionally to registered lockers
 
 ## Website sections
 
 | Section | Purpose |
 |---------|---------|
-| Steak gallery | Visual — pictures of steaks |
+| Hero | Groceries photo + CTAs |
+| Steak gallery | 20 steak pics |
 | Streamflow stake | How to lock 1 year |
-| Register | Google form + wallet connect |
-| Pasture / Herd | Leaderboard + marination points |
+| Register | Google form link only |
+| Pasture | Public Streamflow lock leaderboard |

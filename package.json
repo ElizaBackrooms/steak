@@ -12,6 +12,10 @@
     "lint": "node --check src/index.js",
     "agent": "node scripts/start-cloud-agent.mjs",
     "swarm": "node scripts/swarm-start.mjs",
-    "snapshot": "node scripts/snapshot-worker.mjs"
+    "snapshot": "node scripts/snapshot-worker.mjs",
+    "sync:streamflow": "node scripts/sync-streamflow-locks.mjs"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.98.4"
   }
 }

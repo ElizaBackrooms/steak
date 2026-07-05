@@ -1,17 +1,17 @@
 import { NextResponse } from "next/server";
 
 import { butcherDayCountdown } from "@/lib/butcher-day";
-import { readPointsData } from "@/lib/data";
+import { readLocksData } from "@/lib/streamflow-locks";
 
 export async function GET() {
-  const points = await readPointsData();
-  const ranchers = Object.keys(points.wallets).length;
+  const locks = await readLocksData();
   const butcher = butcherDayCountdown();
 
   return NextResponse.json({
-    ranchers,
+    lockers: locks.locker_count,
+    total_locked: locks.total_locked,
+    last_synced: locks.last_synced,
     butcher_day: butcher.iso,
     butcher_countdown: butcher.label,
-    last_snapshot: points.last_snapshot,
   });
 }
