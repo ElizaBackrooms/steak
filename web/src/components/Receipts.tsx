@@ -31,6 +31,14 @@ export default function Receipts() {
             <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="text-steak-red hover:underline">
               {TOKEN.founder}
             </a>
+            <a
+              href={LINKS.viralTweet || LINKS.x}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-steak-red hover:underline"
+            >
+              Viral post
+            </a>
           </div>
           <p className="text-xs text-steak-cream/40">
             LP burns at Raydium graduation. No presale. Not financial advice.

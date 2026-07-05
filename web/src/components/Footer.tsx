@@ -20,6 +20,14 @@ export default function Footer() {
           <Link href="/#register" className="text-steak-cream/70 hover:text-steak-cream">
             Register
           </Link>
+          <a
+            href={LINKS.viralTweet || LINKS.x}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-steak-cream/70 hover:text-steak-cream"
+          >
+            Viral post
+          </a>
           <a href={LINKS.pump} target="_blank" rel="noopener noreferrer" className="text-steak-cream/70 hover:text-steak-cream">
             pump.fun
           </a>

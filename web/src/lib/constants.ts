@@ -16,6 +16,7 @@ export const TOKEN = {
 export const LINKS = {
   pump: process.env.NEXT_PUBLIC_PUMP_URL ?? "https://pump.fun",
   x: process.env.NEXT_PUBLIC_X_URL ?? "https://x.com/lazefrito",
+  viralTweet: process.env.NEXT_PUBLIC_VIRAL_TWEET_URL ?? "",
   mint: process.env.NEXT_PUBLIC_TOKEN_MINT ?? "",
   streamflow:
     process.env.NEXT_PUBLIC_STREAMFLOW_STAKE_URL ??

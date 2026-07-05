@@ -1,4 +1,6 @@
-import { LORE } from "@/lib/constants";
+import { LINKS, LORE } from "@/lib/constants";
+
+const viralHref = LINKS.viralTweet || LINKS.x;
 
 const PANELS = [
   {
@@ -53,6 +55,16 @@ export default function LorePanels() {
                   <p className="text-xs font-bold uppercase tracking-widest text-steak-red">{panel.tag}</p>
                   <h3 className="mt-1 font-display text-xl font-bold text-steak-cream">{panel.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-steak-cream/70">{panel.body}</p>
+                  {panel.title === "The Bonfire" && (
+                    <a
+                      href={viralHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-block text-sm font-semibold text-steak-red hover:underline"
+                    >
+                      See the viral post →
+                    </a>
+                  )}
                 </div>
               </div>
             </article>

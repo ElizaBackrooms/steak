@@ -70,6 +70,15 @@ export default function Hero() {
             <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="text-steak-red hover:underline">
               {TOKEN.founder}
             </a>
+            {" "}·{" "}
+            <a
+              href={LINKS.viralTweet || LINKS.x}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-steak-red hover:underline"
+            >
+              {LORE.viralViews} viral post
+            </a>
             {" "}· 1B supply · in memory of {LORE.calfName}
           </p>
         </div>
