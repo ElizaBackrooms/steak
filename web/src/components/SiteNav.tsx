@@ -23,7 +23,7 @@ export default function SiteNav() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold tracking-tight text-steak-cream">
           <span className="text-2xl" aria-hidden>🥩</span>
-          The Ranch
+          Groceries Ranch
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">

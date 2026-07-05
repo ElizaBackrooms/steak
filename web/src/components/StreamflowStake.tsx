@@ -42,7 +42,7 @@ export default function StreamflowStake() {
           </a>
         </div>
 
-        <div className="rounded-2xl border border-steak-800 bg-steak-900/50 p-8">
+        <div className="rounded-2xl border border-steak-800/80 bg-steak-950/70 p-8 backdrop-blur-md">
           <h3 className="font-display text-2xl font-bold text-steak-cream">Fee airdrops</h3>
           <p className="mt-3 text-sm leading-relaxed text-steak-cream/60">
             Pump.fun trading fees flow back to the ranch. We snapshot registered wallets that locked on Streamflow

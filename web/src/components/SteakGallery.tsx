@@ -14,7 +14,7 @@ export default function SteakGallery() {
           Pictures of steaks
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-center text-sm text-steak-cream/60">
-          No NFTs. Just steak. Same energy as the bottle-fed lore — raised right, seared hard.
+          No NFTs. Just steak — the harvest after Groceries. Raised right, seared hard.
         </p>
 
         <div className="mt-12 columns-2 gap-3 sm:columns-3 lg:columns-4">

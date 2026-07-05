@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { LINKS, TOKEN } from "@/lib/constants";
+import { LINKS, LORE, TOKEN } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-steak-800/60 px-4 py-12">
+    <footer className="border-t border-steak-800/60 bg-steak-950 px-4 py-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
         <div className="text-center sm:text-left">
-          <p className="font-display text-lg font-bold text-steak-cream">The Ranch · ${TOKEN.ticker}</p>
+          <p className="font-display text-lg font-bold text-steak-cream">Groceries Ranch · ${TOKEN.ticker}</p>
           <p className="mt-1 text-sm text-steak-cream/50">
-            {TOKEN.tagline} — not financial advice.
+            In memory of {LORE.calfName} — not financial advice.
           </p>
         </div>
 

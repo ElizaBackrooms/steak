@@ -1,8 +1,14 @@
+export const LORE = {
+  calfName: "Groceries",
+  viralViews: "~1M views",
+  founderHandle: "@lazefrito",
+} as const;
+
 export const TOKEN = {
   ticker: "STEAK",
   supply: 1_000_000_000,
   decimals: 6,
-  tagline: "Bottle-Fed to Blockchain",
+  tagline: "Groceries · Bottle-Fed to Blockchain",
   founder: "@lazefrito",
   community: "Ranchers",
 } as const;

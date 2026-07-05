@@ -19,8 +19,8 @@ export default function StakeForm() {
   }, [wallet]);
 
   return (
-    <section id="register" className="border-t border-steak-800/60 bg-steak-900/20 px-4 py-24">
-      <div className="mx-auto max-w-xl text-center">
+    <section id="register" className="px-4 py-24">
+      <div className="mx-auto max-w-xl rounded-2xl border border-steak-800/60 bg-steak-950/75 p-8 text-center backdrop-blur-md">
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-steak-amber">Register</p>
         <h2 className="mt-2 font-display text-3xl font-bold text-steak-cream">Wallet + Google form</h2>
         <p className="mt-3 text-sm text-steak-cream/60">

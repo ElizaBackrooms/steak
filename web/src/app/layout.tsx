@@ -15,13 +15,13 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "The Ranch — $STEAK · Bottle-Fed to Blockchain",
+  title: "Groceries Ranch — $STEAK · Bottle-Fed to Blockchain",
   description:
-    "pump.fun meme coin on Solana. Steak pics, Streamflow 1-year stake, register your wallet for fee airdrops.",
+    "In memory of Groceries. pump.fun on Solana — steak pics, Streamflow 1-year stake, wallet registration, fee airdrops.",
   openGraph: {
-    title: "The Ranch — $STEAK",
-    description: "Lock on Streamflow. Register your wallet. Catch fee airdrops.",
-    images: ["/steaks/001.jpg"],
+    title: "Groceries Ranch — $STEAK",
+    description: "Her name was Groceries. Lock on Streamflow. Register your wallet. Catch fee airdrops.",
+    images: ["/backgrounds/bg-hero-ranch.jpg"],
   },
 };
 
