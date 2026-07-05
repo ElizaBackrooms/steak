@@ -5,8 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "node src/index.js",
+    "dev:web": "npm run dev --prefix web",
+    "build:web": "npm run generate:nft-cuts && npm run build --prefix web",
     "start": "node src/index.js",
-    "test": "node --test test/index.test.js",
-    "lint": "node --check src/index.js"
+    "test": "node --experimental-strip-types --test test/index.test.js test/points.test.js test/nft.test.js",
+    "lint": "node --check src/index.js",
+    "agent": "node scripts/start-cloud-agent.mjs",
+    "swarm": "node scripts/swarm-start.mjs",
+    "snapshot": "node scripts/snapshot-worker.mjs",
+    "generate:nft-cuts": "node scripts/generate-nft-cuts.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.3"
   }
 }
