@@ -47,7 +47,7 @@ export async function readLocksData(): Promise<LocksData> {
   }
 }
 
-export function pastureLeaderboard(data: LocksData, limit = 50): PastureEntry[] {
+export function pastureLeaderboard(data: LocksData, limit = 25): PastureEntry[] {
   const sorted = [...data.locks].sort((a, b) => b.amount - a.amount);
   const total = data.total_locked || sorted.reduce((s, r) => s + r.amount, 0);
 

@@ -17,7 +17,7 @@ function short(w: string) {
   return `${w.slice(0, 4)}…${w.slice(-4)}`;
 }
 
-export default function PastureBoard({ limit = 10 }: { limit?: number }) {
+export default function PastureBoard({ limit = 25 }: { limit?: number }) {
   const [rows, setRows] = useState<Entry[]>([]);
   const [totalLocked, setTotalLocked] = useState(0);
 

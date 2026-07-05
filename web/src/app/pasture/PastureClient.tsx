@@ -26,7 +26,7 @@ export default function PastureClient() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/pasture/leaderboard?limit=200")
+    fetch("/api/pasture/leaderboard?limit=25")
       .then((r) => r.json())
       .then((d) => {
         setRows(d.leaderboard ?? []);
