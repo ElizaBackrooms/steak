@@ -1,47 +1,49 @@
-# Steak Cut Levels — 5 tiers, 5 arts
+# Steak Cut Levels — 5 tiers, 200 unique arts
 
 **Same gate for every level:** 100,000 STEAK · 1 per wallet · 200 total
 
-Mint order cycles through all 5 levels (40 of each across the full collection).
+Mint order cycles through all 5 levels (40 of each across the full collection). **Each serial has its own image file** — no text burned into the art.
 
-| LVL | Cut | File | Vibe |
-|-----|-----|------|------|
-| **1** | Sirloin | `cut-level-1-sirloin.png` | Classic entry cut |
-| **2** | Ribeye | `cut-level-2-ribeye.png` | Marbled, loud |
-| **3** | Brisket | `cut-level-3-brisket.png` | Smoked, patient |
-| **4** | Porterhouse | `cut-level-4-porterhouse.png` | Big bone energy |
-| **5** | Prime | `cut-level-5-prime.png` | Dry-aged top tier |
+| LVL | Cut | Example serial | Base art |
+|-----|-----|----------------|----------|
+| **1** | Sirloin | #1, #6, #11… | `assets/bases/base-level-1-sirloin.png` |
+| **2** | Ribeye | #2, #7, #12… | `base-level-2-ribeye.png` |
+| **3** | Brisket | #3, #8, #13… | `base-level-3-brisket.png` |
+| **4** | Porterhouse | #4, #9, #14… | `base-level-4-porterhouse.png` |
+| **5** | Prime | #5, #10, #15… | `base-level-5-prime.png` |
 
-Examples live in:
-- `assets/examples/cut-level-*.png`
-- `web/public/cuts/cut-level-*.png` (served on site)
+## Image files
+
+- **200 NFT renders:** `assets/nft-cuts/001.jpg` … `200.jpg`
+- **Served on site:** `web/public/cuts/serial/001.jpg` … `200.jpg`
+- **Regenerate:** `npm run generate:nft-cuts`
 
 ## On-chain names
 
-| Serial | Example name |
-|--------|----------------|
-| 1 | Sirloin Cut · LVL 1 #1 |
-| 2 | Ribeye Cut · LVL 2 #2 |
-| 5 | Prime Cut · LVL 5 #5 |
-| 6 | Sirloin Cut · LVL 1 #6 |
+| Serial | Example name | Image |
+|--------|----------------|-------|
+| 1 | Sirloin Cut · LVL 1 #1 | `001.jpg` |
+| 2 | Ribeye Cut · LVL 2 #2 | `002.jpg` |
+| 5 | Prime Cut · LVL 5 #5 | `005.jpg` |
+| 6 | Sirloin Cut · LVL 1 #6 | `006.jpg` |
+| 200 | Prime Cut · LVL 5 #200 | `200.jpg` |
 
 ## IPFS upload (founder)
 
-Upload all 5 images + one metadata template per level, OR one shared metadata with dynamic name on mint (current code sets name in `formatCutName`).
+Upload all 200 images from `assets/nft-cuts/` plus per-serial metadata (or a script that maps serial → image CID).
 
-Per-level metadata example:
+Per-serial metadata example:
 
 ```json
 {
-  "name": "Ribeye Cut · LVL 2",
+  "name": "Ribeye Cut · LVL 2 #2",
   "symbol": "CUT",
   "description": "Steak Cut NFT from The Ranch. 100k STEAK gate.",
-  "image": "ipfs://CID/ribeye.png",
+  "image": "ipfs://CID/002.jpg",
   "attributes": [
     { "trait_type": "Level", "value": "2" },
-    { "trait_type": "Cut", "value": "Ribeye" }
+    { "trait_type": "Cut", "value": "Ribeye" },
+    { "trait_type": "Serial", "value": "2" }
   ]
 }
 ```
-
-For single-URI minting tonight, use LVL 1 art for all and upgrade metadata later — or wire 5 URIs in env when ready.

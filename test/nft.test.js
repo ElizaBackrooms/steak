@@ -77,9 +77,10 @@ test("formatCutName cycles through 5 cut levels", () => {
   assert.equal(NFT.levelCount, 5);
 });
 
-test("getCutImage maps each level to its example art", () => {
-  assert.equal(getCutImage(1), CUT_LEVELS[0].image);
-  assert.equal(getCutImage(5), CUT_LEVELS[4].image);
-  assert.equal(getCutImage(6), CUT_LEVELS[0].image);
+test("getCutImage maps each serial to a unique file path", () => {
+  assert.equal(getCutImage(1), "/cuts/serial/001.jpg");
+  assert.equal(getCutImage(200), "/cuts/serial/200.jpg");
+  assert.equal(getCutImage(6), "/cuts/serial/006.jpg");
   assert.equal(CUT_LEVELS.length, 5);
+  assert.equal(CUT_LEVELS[0].exampleSerial, 1);
 });

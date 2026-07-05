@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The Ranch — $STEAK",
     description: "You raised it. Now raise your bags. 100k STEAK = 1 Steak Cut NFT.",
-    images: ["/steak-cut-hero.png"],
+    images: ["/cuts/serial/001.jpg"],
   },
 };
 

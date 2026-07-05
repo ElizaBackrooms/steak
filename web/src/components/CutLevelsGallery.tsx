@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CUT_LEVELS } from "@/lib/nft";
+import { CUT_LEVELS, getCutImage } from "@/lib/nft";
 
 export default function CutLevelsGallery() {
   return (
@@ -12,7 +12,7 @@ export default function CutLevelsGallery() {
           Every cut hits different
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-center text-sm text-steak-cream/60">
-          Same 100k STEAK gate. Your serial decides the level — Sirloin through Prime.
+          Same 100k STEAK gate. 200 unique cuts — your serial picks the level and the art.
         </p>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
@@ -23,7 +23,7 @@ export default function CutLevelsGallery() {
             >
               <div className="relative aspect-square">
                 <Image
-                  src={cut.image}
+                  src={getCutImage(cut.exampleSerial)}
                   alt={cut.label}
                   fill
                   className="object-cover"

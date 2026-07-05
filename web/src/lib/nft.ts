@@ -5,35 +5,35 @@ export const CUT_LEVELS = [
     level: 1,
     name: "Sirloin",
     label: "Sirloin Cut",
-    image: "/cuts/cut-level-1-sirloin.png",
+    exampleSerial: 1,
     vibe: "Entry cut — clean, classic, gets you on the board.",
   },
   {
     level: 2,
     name: "Ribeye",
     label: "Ribeye Cut",
-    image: "/cuts/cut-level-2-ribeye.png",
+    exampleSerial: 2,
     vibe: "Marbled and loud — the herd knows you showed up.",
   },
   {
     level: 3,
     name: "Brisket",
     label: "Brisket Cut",
-    image: "/cuts/cut-level-3-brisket.png",
+    exampleSerial: 3,
     vibe: "Low and slow energy — smoked, patient, dangerous.",
   },
   {
     level: 4,
     name: "Porterhouse",
     label: "Porterhouse Cut",
-    image: "/cuts/cut-level-4-porterhouse.png",
+    exampleSerial: 4,
     vibe: "Big bone energy — steakhouse table, no apologies.",
   },
   {
     level: 5,
     name: "Prime",
     label: "Prime Cut",
-    image: "/cuts/cut-level-5-prime.png",
+    exampleSerial: 5,
     vibe: "Dry-aged top tier — the cut they screenshot.",
   },
 ] as const;
@@ -67,8 +67,18 @@ export function formatCutName(serial: number): string {
   return `${cut.label} · LVL ${cut.level} #${serial}`;
 }
 
+export function formatCutImagePath(serial: number): string {
+  const n = Math.max(1, Math.min(NFT.maxSupply, Math.floor(serial)));
+  return `/cuts/serial/${String(n).padStart(3, "0")}.jpg`;
+}
+
 export function getCutImage(serial: number): string {
-  return getCutLevel(serial).image;
+  return formatCutImagePath(serial);
+}
+
+export function getCutLevelExampleImage(level: number): string {
+  const cut = CUT_LEVELS.find((c) => c.level === level) ?? CUT_LEVELS[0];
+  return formatCutImagePath(cut.exampleSerial);
 }
 
 export type MintRecord = {
