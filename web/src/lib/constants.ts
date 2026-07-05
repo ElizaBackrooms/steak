@@ -11,6 +11,11 @@ export const LINKS = {
   pump: process.env.NEXT_PUBLIC_PUMP_URL ?? "https://pump.fun",
   x: process.env.NEXT_PUBLIC_X_URL ?? "https://x.com/lazefrito",
   mint: process.env.NEXT_PUBLIC_TOKEN_MINT ?? "",
+  streamflow:
+    process.env.NEXT_PUBLIC_STREAMFLOW_STAKE_URL ??
+    "https://app.streamflow.finance/contract/solana/mainnet/lock",
+  googleForm: process.env.NEXT_PUBLIC_GOOGLE_FORM_URL ?? "",
+  googleFormWalletEntry: process.env.NEXT_PUBLIC_GOOGLE_FORM_WALLET_ENTRY ?? "",
 } as const;
 
 export const RPC_URL =

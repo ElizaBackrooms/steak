@@ -1,16 +1,12 @@
 const ALLOCATION = [
-  { label: "Public LP (burned forever)", pct: 40, color: "bg-steak-red" },
-  { label: "The Pasture (staking rewards)", pct: 30, color: "bg-steak-amber" },
-  { label: "Genesis Rancher airdrop", pct: 10, color: "bg-steak-cream" },
-  { label: "The Ranch Hand (team, vested)", pct: 10, color: "bg-steak-800" },
-  { label: "The Barn (community treasury)", pct: 10, color: "bg-steak-700" },
+  { label: "Public LP (pump.fun)", pct: 100, color: "bg-steak-red" },
 ];
 
 const GRAZING = [
   { emoji: "🐄", name: "Calf", days: "7 days", mult: "1×" },
   { emoji: "🐂", name: "Yearling", days: "30 days", mult: "2×" },
   { emoji: "🥩", name: "Prime Cut", days: "90 days", mult: "4×" },
-  { emoji: "🔥", name: "Dry-Aged", days: "180 days", mult: "8× + governance" },
+  { emoji: "🔥", name: "Dry-Aged", days: "180 days", mult: "8×" },
 ];
 
 export default function Tokenomics() {
@@ -19,16 +15,16 @@ export default function Tokenomics() {
       <div className="mx-auto max-w-5xl">
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-steak-amber">Tokenomics</p>
         <h2 className="mt-2 font-display text-4xl font-bold text-steak-cream">
-          A Whole Herd — 1 Billion STEAK
+          Simple coin — 1 Billion STEAK
         </h2>
         <p className="mt-4 max-w-2xl text-steak-cream/70">
-          1 STEAK = 1 oz. Fractions are cuts — ribeye, sirloin, brisket. Fixed supply at birth.
-          No mint authority after launch.
+          Launched on pump.fun. No NFTs. Trading fees get collected and airdropped to wallets that locked on Streamflow
+          for 1 year and registered on the Google form.
         </p>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
           <div>
-            <h3 className="mb-4 font-display text-xl font-bold text-steak-cream">Allocation</h3>
+            <h3 className="mb-4 font-display text-xl font-bold text-steak-cream">Launch</h3>
             <div className="space-y-3">
               {ALLOCATION.map((row) => (
                 <div key={row.label}>
@@ -42,10 +38,16 @@ export default function Tokenomics() {
                 </div>
               ))}
             </div>
+            <p className="mt-4 text-sm text-steak-cream/50">
+              Fee airdrops: proportional to your registered Streamflow lock. Snapshots on Butcher Day (Sundays).
+            </p>
           </div>
 
           <div>
             <h3 className="mb-4 font-display text-xl font-bold text-steak-cream">Grazing Seasons</h3>
+            <p className="mb-4 text-sm text-steak-cream/60">
+              Hold in wallet to climb tiers and stack marination points on the leaderboard.
+            </p>
             <div className="space-y-3">
               {GRAZING.map((g) => (
                 <div
@@ -63,9 +65,6 @@ export default function Tokenomics() {
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-sm text-steak-cream/50">
-              Early unstake = 25% Slaughter Tax (burned) + 5% to remaining stakers.
-            </p>
           </div>
         </div>
       </div>

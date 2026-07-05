@@ -13,8 +13,11 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
-          <Link href="/mint" className="text-steak-cream/70 hover:text-steak-cream">
-            Cut Room
+          <Link href="/#stake" className="text-steak-cream/70 hover:text-steak-cream">
+            Stake
+          </Link>
+          <Link href="/#register" className="text-steak-cream/70 hover:text-steak-cream">
+            Register
           </Link>
           <Link href="/dashboard" className="text-steak-cream/70 hover:text-steak-cream">
             Pasture

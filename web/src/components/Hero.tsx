@@ -10,7 +10,7 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-steak-amber">
-          The Ranch · Solana · Tonight
+          pump.fun · Solana
         </p>
         <h1 className="font-display text-5xl font-black leading-none tracking-tight text-steak-cream sm:text-7xl">
           ${TOKEN.ticker}
@@ -19,8 +19,8 @@ export default function Hero() {
           {TOKEN.tagline}
         </p>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-steak-cream/70">
-          You bottle-fed her. You raised her. You ate her. Now you raise your bags on-chain — same rules, same
-          harvest.
+          Bottle-fed lore. Steak pictures on the site. Lock your bags on Streamflow for a year, register your wallet,
+          and catch fee airdrops.
         </p>
 
         <RanchHud />
@@ -34,17 +34,19 @@ export default function Hero() {
           >
             Buy on pump.fun
           </a>
-          <Link
-            href="/mint"
+          <a
+            href={LINKS.streamflow}
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full rounded-full border border-steak-amber/40 bg-steak-amber/10 px-8 py-4 text-lg font-bold text-steak-amber transition hover:bg-steak-amber/20 sm:w-auto"
           >
-            Cut Room
-          </Link>
+            Stake 1 year
+          </a>
           <Link
-            href="/dashboard"
+            href="/#register"
             className="w-full rounded-full border border-steak-cream/20 px-8 py-4 text-lg font-bold text-steak-cream transition hover:border-steak-cream/40 hover:bg-steak-cream/5 sm:w-auto"
           >
-            The Pasture
+            Register wallet
           </Link>
         </div>
 
@@ -53,7 +55,7 @@ export default function Hero() {
           <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="text-steak-amber hover:underline">
             {TOKEN.founder}
           </a>
-          {" "}· 1B supply · Proof of Steak
+          {" "}· 1B supply · fees airdropped to stakers
         </p>
       </div>
     </section>

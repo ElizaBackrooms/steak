@@ -4,9 +4,6 @@ import { useEffect, useState } from "react";
 
 type RanchStats = {
   ranchers: number;
-  minted: number;
-  remaining: number;
-  max_cuts: number;
   butcher_countdown: string;
 };
 
@@ -14,22 +11,20 @@ export default function RanchHud() {
   const [stats, setStats] = useState<RanchStats | null>(null);
 
   useEffect(() => {
-    fetch("/api/ranch/stats", { cache: "no-store" })
-      .then((r) => r.json())
-      .then((d) => setStats(d as RanchStats))
-      .catch(() => {});
-    const id = setInterval(() => {
+    const load = () =>
       fetch("/api/ranch/stats", { cache: "no-store" })
         .then((r) => r.json())
         .then((d) => setStats(d as RanchStats))
         .catch(() => {});
-    }, 60_000);
+
+    load();
+    const id = setInterval(load, 60_000);
     return () => clearInterval(id);
   }, []);
 
   const items = [
     { label: "Ranchers tracked", value: stats ? String(stats.ranchers) : "—" },
-    { label: "Cuts left", value: stats ? `${stats.remaining}/${stats.max_cuts}` : "—" },
+    { label: "Lock period", value: "1 year" },
     { label: "Butcher Day", value: stats ? stats.butcher_countdown : "—" },
   ];
 

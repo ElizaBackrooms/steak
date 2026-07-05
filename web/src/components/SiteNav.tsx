@@ -7,14 +7,16 @@ import { LINKS, TOKEN } from "@/lib/constants";
 
 const NAV = [
   { href: "/#story", label: "Story" },
-  { href: "/#cuts", label: "Cut Room" },
-  { href: "/#herd", label: "The Herd" },
+  { href: "/#steaks", label: "Steaks" },
+  { href: "/#stake", label: "Stake" },
+  { href: "/#register", label: "Register" },
+  { href: "/#herd", label: "Herd" },
   { href: "/dashboard", label: "Pasture" },
 ];
 
 export default function SiteNav() {
   const pathname = usePathname();
-  const showWallet = pathname === "/dashboard" || pathname === "/mint";
+  const showWallet = pathname === "/dashboard";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-steak-800/60 bg-steak-950/80 backdrop-blur-md">
@@ -50,10 +52,10 @@ export default function SiteNav() {
           )}
           {!showWallet && (
             <Link
-              href="/mint"
+              href="/#register"
               className="rounded-full bg-steak-red px-4 py-2 text-sm font-semibold text-white transition hover:bg-steak-red/90"
             >
-              Mint Cut
+              Register
             </Link>
           )}
         </div>

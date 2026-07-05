@@ -1,13 +1,12 @@
 import SiteNav from "@/components/SiteNav";
 import Hero from "@/components/Hero";
 import LorePanels from "@/components/LorePanels";
+import SteakGallery from "@/components/SteakGallery";
+import StreamflowStake from "@/components/StreamflowStake";
+import StakeForm from "@/components/StakeForm";
 import WalletStats from "@/components/WalletStats";
-import Steakometer from "@/components/Steakometer";
 import HerdBoard from "@/components/HerdBoard";
-import CutLevelsGallery from "@/components/CutLevelsGallery";
-import CutRoomTeaser from "@/components/CutRoomTeaser";
 import Tokenomics from "@/components/Tokenomics";
-import Quests from "@/components/Quests";
 import Receipts from "@/components/Receipts";
 import Footer from "@/components/Footer";
 
@@ -18,13 +17,12 @@ export default function Home() {
       <main>
         <Hero />
         <LorePanels />
+        <StreamflowStake />
+        <StakeForm />
+        <SteakGallery />
         <WalletStats />
-        <Steakometer />
-        <CutLevelsGallery />
-        <CutRoomTeaser />
         <HerdBoard />
         <Tokenomics />
-        <Quests />
         <Receipts />
       </main>
       <Footer />

@@ -17,11 +17,11 @@ const sans = Inter({
 export const metadata: Metadata = {
   title: "The Ranch — $STEAK · Bottle-Fed to Blockchain",
   description:
-    "Proof of Steak on Solana. Hold STEAK, mint a Steak Cut NFT, climb the Herd. pump.fun launch tonight.",
+    "pump.fun meme coin on Solana. Steak pics, Streamflow 1-year stake, register your wallet for fee airdrops.",
   openGraph: {
     title: "The Ranch — $STEAK",
-    description: "You raised it. Now raise your bags. 100k STEAK = 1 Steak Cut NFT.",
-    images: ["/cuts/serial/001.jpg"],
+    description: "Lock on Streamflow. Register your wallet. Catch fee airdrops.",
+    images: ["/steaks/001.jpg"],
   },
 };
 

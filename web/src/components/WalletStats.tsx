@@ -5,39 +5,33 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Link from "next/link";
 
-import { NFT } from "@/lib/nft";
-
-type WalletStatus = {
-  steak_balance: number;
-  eligible: boolean;
-  reason: string | null;
-  already_minted: { serial: number; cut?: string } | null;
-};
+import { LINKS } from "@/lib/constants";
 
 type PointsStatus = {
   tier: string;
   points: number;
+  balance: number;
 };
 
 export default function WalletStats() {
   const { publicKey, connected } = useWallet();
-  const [mint, setMint] = useState<WalletStatus | null>(null);
+  const [liveBalance, setLiveBalance] = useState<number | null>(null);
   const [points, setPoints] = useState<PointsStatus | null>(null);
 
   const wallet = publicKey?.toBase58();
 
   useEffect(() => {
     if (!wallet) {
-      setMint(null);
+      setLiveBalance(null);
       setPoints(null);
       return;
     }
-    fetch(`/api/mint/status?wallet=${wallet}`)
+    fetch(`/api/balance/${wallet}`)
       .then((r) => r.json())
-      .then((d) => setMint(d as WalletStatus));
+      .then((d) => setLiveBalance(d.balance ?? 0));
     fetch(`/api/points/${wallet}`)
       .then((r) => r.json())
-      .then((d) => setPoints({ tier: d.tier, points: d.points }));
+      .then((d) => setPoints({ tier: d.tier, points: d.points, balance: d.balance }));
   }, [wallet]);
 
   return (
@@ -52,16 +46,16 @@ export default function WalletStats() {
 
         {!connected && (
           <p className="mt-6 text-center text-sm text-steak-cream/50">
-            See balance, tier, and cut eligibility — no signup, just your wallet.
+            See balance and marination points — then stake on Streamflow and register for airdrops.
           </p>
         )}
 
         {connected && wallet && (
           <dl className="mt-8 space-y-3 rounded-2xl border border-steak-800 bg-steak-900/50 p-6 text-sm">
             <div className="flex justify-between">
-              <dt className="text-steak-cream/50">STEAK balance</dt>
+              <dt className="text-steak-cream/50">STEAK balance (live)</dt>
               <dd className="font-mono font-semibold text-steak-cream">
-                {(mint?.steak_balance ?? 0).toLocaleString()}
+                {(liveBalance ?? 0).toLocaleString()}
               </dd>
             </div>
             <div className="flex justify-between">
@@ -72,31 +66,20 @@ export default function WalletStats() {
               <dt className="text-steak-cream/50">Marination pts</dt>
               <dd className="font-semibold text-steak-cream">{(points?.points ?? 0).toLocaleString()}</dd>
             </div>
-            <div className="flex justify-between border-t border-steak-800 pt-3">
-              <dt className="text-steak-cream/50">Steak Cut</dt>
-              <dd className="font-semibold text-steak-cream">
-                {mint?.already_minted
-                  ? `#${mint.already_minted.serial}`
-                  : mint?.eligible
-                    ? "Eligible — mint now"
-                    : `Need ${NFT.minSteakBalance.toLocaleString()} STEAK`}
-              </dd>
-            </div>
-            {mint?.reason && !mint.eligible && !mint.already_minted && (
-              <p className="text-center text-xs text-steak-cream/40">{mint.reason}</p>
-            )}
             <div className="flex gap-3 pt-2">
-              <Link
-                href="/mint"
+              <a
+                href={LINKS.streamflow}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex-1 rounded-full bg-steak-red py-2.5 text-center text-sm font-semibold text-white hover:bg-steak-red/90"
               >
-                Cut Room
-              </Link>
+                Stake on Streamflow
+              </a>
               <Link
-                href="/dashboard"
+                href="/#register"
                 className="flex-1 rounded-full border border-steak-800 py-2.5 text-center text-sm font-semibold text-steak-cream hover:bg-steak-800/50"
               >
-                Pasture
+                Register wallet
               </Link>
             </div>
           </dl>
