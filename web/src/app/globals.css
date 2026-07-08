@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0c0a09;
+  --foreground: #0c0a09;
+  --blood: #c41e3a;
+  --blood-dark: #7a0f22;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background-color: #0c0a09;
+  background-image:
+    linear-gradient(to bottom, rgba(12, 10, 9, 0.55), rgba(12, 10, 9, 0.75)),
+    url("/backgrounds/bg-hero-ranch.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ---------- Blood drip theme ---------- */
+
+/*
+ * Drip strip: repeating downward drips. Used under the nav, under the hero
+ * image, and along the top of "blood cards".
+ */
+.drip-strip {
+  height: 26px;
+  width: 100%;
+  background-repeat: repeat-x;
+  background-size: 90px 26px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='26' viewBox='0 0 90 26'%3E%3Cpath fill='%23c41e3a' d='M0 0h90v4H0z'/%3E%3Cpath fill='%23c41e3a' d='M8 4c0 6 3 8 3 12a3 3 0 1 1-6 0c0-4 3-6 3-12zM33 4c0 9 3 11 3 16a3 3 0 1 1-6 0c0-5 3-7 3-16zM58 4c0 5 3 7 3 10a3 3 0 1 1-6 0c0-3 3-5 3-10zM79 4c0 7 3 9 3 13a3 3 0 1 1-6 0c0-4 3-6 3-13z'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Card with a bloody top edge and hanging drips */
+.blood-card {
+  position: relative;
+  overflow: visible;
+  border-top: 4px solid var(--blood);
+}
+
+.blood-card::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  height: 22px;
+  background-repeat: repeat-x;
+  background-size: 110px 22px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='22' viewBox='0 0 110 22'%3E%3Cpath fill='%23c41e3a' d='M14 0c0 6 2.6 7.4 2.6 10.6a2.6 2.6 0 1 1-5.2 0C11.4 7.4 14 6 14 0zM47 0c0 8 2.6 9.4 2.6 13.4a2.6 2.6 0 1 1-5.2 0C44.4 9.4 47 8 47 0zM83 0c0 5 2.6 6.4 2.6 8.6a2.6 2.6 0 1 1-5.2 0C80.4 6.4 83 5 83 0z'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Dripping headline underline */
+.blood-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.blood-underline::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -14px;
+  height: 18px;
+  background-repeat: repeat-x;
+  background-size: 120px 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='18' viewBox='0 0 120 18'%3E%3Cpath fill='%23c41e3a' d='M0 0h120v3.5H0z'/%3E%3Cpath fill='%23c41e3a' d='M18 3.5c0 5 2.4 6 2.4 9a2.4 2.4 0 1 1-4.8 0c0-3 2.4-4 2.4-9zM62 3.5c0 6.5 2.4 7.5 2.4 11a2.4 2.4 0 1 1-4.8 0c0-3.5 2.4-4.5 2.4-11zM98 3.5c0 4 2.4 5 2.4 7.5a2.4 2.4 0 1 1-4.8 0c0-2.5 2.4-3.5 2.4-7.5z'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Slow dripping droplet animation for hero */
+@keyframes drip-fall {
+  0% {
+    transform: translateY(0) scaleY(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(46px) scaleY(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(58px) scaleY(1);
+    opacity: 0;
+  }
+}
+
+.drip-dot {
+  position: absolute;
+  top: 100%;
+  width: 7px;
+  height: 12px;
+  border-radius: 50% 50% 60% 60%;
+  background: var(--blood);
+  animation: drip-fall 2.8s ease-in infinite;
+}
+
+/* Meaty red glow for buttons / winner card */
+.blood-glow {
+  box-shadow:
+    0 0 18px rgba(196, 30, 58, 0.45),
+    0 0 44px rgba(196, 30, 58, 0.18);
+}
